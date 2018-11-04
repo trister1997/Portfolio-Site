@@ -1,8 +1,21 @@
 <?php
 return [
+    "name" => "Rister IO",
     "entities" => [
         "projects" => [
-            "list" => \App\Sharp\EntityLists\Projects::class
+            "list" => \App\Sharp\EntityLists\ProjectsList::class,
+            "form" => \App\Sharp\EntityForms\ProjectForm::class
+        ],
+        "schools" => [
+            "list" => \App\Sharp\EntityLists\SchoolList::class,
+            "form" => \App\Sharp\EntityForms\SchoolForm::class
+        ],
+        "skills" => [
+            "list" => \App\Sharp\EntityLists\SkillList::class,
+            "form" => \App\Sharp\EntityForms\SkillForm::class
+        ],
+        "profile_attributes" => [
+            "form" => \App\Sharp\EntityForms\ProfileAttributesForm::class
         ]
     ],
     "auth" => [
@@ -12,20 +25,24 @@ return [
     ],
     "menu" => [
         [
-            "entity" => "projects",
-            "properties" => [
-                "label" => "Projects",
-                "icon" => "fa-folder"
-            ]
+            "label" => "Profile",
+            "icon" => "fa-user",
+            "url" => env('APP_URL') . '/sharp/form/profile_attributes/update',
         ],
         [
             "label" => "Projects",
-            "entities" => [
-                "projects" => [
-                    "label" => "Projects",
-                    "icon" => "fa-folder"
-                ]
-            ]
+            "icon" => "fa-folder",
+            "entity" => "projects"
+        ],
+        [
+            "label" => "Schools",
+            "icon" => "fa-book",
+            "entity" => "schools"
+        ],
+        [
+            "label" => "Skills",
+            "icon" => "fa-cogs",
+            "entity" => "skills"
         ]
     ]
 ];

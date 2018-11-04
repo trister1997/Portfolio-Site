@@ -4,16 +4,15 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c524c39485c5bcafe7e647b5d4735d40",
+    "content-hash": "e97a8b26817074928f442609fd4c59e3",
     "packages": [
         {
             "name": "code16/sharp",
-            "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "/var/www/sharp",
-                "reference": "f0aa071b063384299e4b038cddebf7fd8494832e",
-                "shasum": null
+            "version": "dev-menu_and_other",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/trister1997/sharp",
+                "reference": "6f064876798ea647e8f283683c3f8f42ce2b2c5f"
             },
             "require": {
                 "intervention/image": "^2.3",
@@ -58,7 +57,8 @@
                     "email": "antoine@code16.fr"
                 }
             ],
-            "description": "Let's call it a Laravel Content Management Framework"
+            "description": "Let's call it a Laravel Content Management Framework",
+            "time": "2018-11-04T23:28:31+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
