@@ -36,7 +36,7 @@ return [
         [
             "label" => "Profile",
             "icon" => "fa-user",
-            "url" => env('APP_URL') . '/sharp/form/profile_attributes/update',
+            "url" => env('APP_URL') . '/admin/form/profile_attributes/update',
         ],
         [
             "label" => "Jobs",

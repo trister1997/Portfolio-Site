@@ -12,7 +12,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/trister1997/sharp",
-                "reference": "6f064876798ea647e8f283683c3f8f42ce2b2c5f"
+                "reference": "8929389797f83fef19a03d01ee1be6880585c3c8"
             },
             "require": {
                 "intervention/image": "^2.3",
@@ -58,7 +58,7 @@
                 }
             ],
             "description": "Let's call it a Laravel Content Management Framework",
-            "time": "2018-11-04T23:28:31+00:00"
+            "time": "2018-11-05T22:42:40+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
