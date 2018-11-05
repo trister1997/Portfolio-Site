@@ -15,7 +15,16 @@ return [
             "form" => \App\Sharp\EntityForms\SkillForm::class
         ],
         "profile_attributes" => [
-            "form" => \App\Sharp\EntityForms\ProfileAttributesForm::class
+            "form" => \App\Sharp\EntityForms\ProfileAttributesForm::class,
+            "validator" => \App\Sharp\ProfileAttributesValidator::class
+        ],
+        "conferences" => [
+            "form" => \App\Sharp\EntityForms\ConferenceForm::class,
+            "list" => \App\Sharp\EntityLists\ConferenceList::class
+        ],
+        "experiences" => [
+            "form" => \App\Sharp\EntityForms\ExperienceForm::class,
+            "list" => \App\Sharp\EntityLists\ExperienceList::class
         ]
     ],
     "auth" => [
@@ -28,6 +37,11 @@ return [
             "label" => "Profile",
             "icon" => "fa-user",
             "url" => env('APP_URL') . '/sharp/form/profile_attributes/update',
+        ],
+        [
+            "label" => "Jobs",
+            "icon" => "fa-building",
+            "entity" => "experiences"
         ],
         [
             "label" => "Projects",
@@ -43,6 +57,11 @@ return [
             "label" => "Skills",
             "icon" => "fa-cogs",
             "entity" => "skills"
+        ],
+        [
+            "label" => "Conferences",
+            "icon" => "fa-users",
+            "entity" => "conferences"
         ]
     ]
 ];

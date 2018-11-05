@@ -13,6 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['prefix' => 'v1'], function() {
+    Route::get('/profile', 'APIController@getProfile');
+    Route::get('/jobs', 'APIController@getJobs');
+    Route::get('/conferences', 'APIController@getConferences');
+    Route::get('/projects', 'APIController@getProjects');
 });

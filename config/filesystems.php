@@ -66,7 +66,7 @@ return [
         'media' => [
             'driver' => 'local',
             'root' => env('MEDIA_PATH'),
-            'url' => env('MEDIA_url'),
+            'url' => env('MEDIA_URL'),
             'visibility' => 'public'
         ]
     ],
