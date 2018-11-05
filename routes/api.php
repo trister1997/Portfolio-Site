@@ -18,4 +18,6 @@ Route::group(['prefix' => 'v1'], function() {
     Route::get('/jobs', 'APIController@getJobs');
     Route::get('/conferences', 'APIController@getConferences');
     Route::get('/projects', 'APIController@getProjects');
+    Route::get('/skills', 'APIController@getSkills');
+    Route::get('/schools', 'APIController@getSchools');
 });

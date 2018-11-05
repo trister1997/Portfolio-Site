@@ -15,6 +15,12 @@ class SkillsTest extends TestCase
      */
     public function testExample()
     {
-        $this->assertTrue(true);
+        $response = $this->json('GET', '/api/v1/skills');
+        $response->assertStatus(200)->assertJsonStructure([
+            "*" => [
+                "title",
+                "percentage"
+            ]
+        ]);
     }
 }

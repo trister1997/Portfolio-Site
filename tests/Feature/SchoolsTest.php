@@ -15,6 +15,14 @@ class SchoolsTest extends TestCase
      */
     public function testExample()
     {
-        $this->assertTrue(true);
+        $response = $this->json('GET', '/api/v1/schools');
+        $response->assertStatus(200)->assertJsonStructure([
+            "*" => [
+                "major",
+                "name",
+                "start_year",
+                "end_year"
+            ]
+        ]);
     }
 }
