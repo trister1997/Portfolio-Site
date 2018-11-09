@@ -1,6 +1,6 @@
 <?php
 return [
-    "name" => "Rister IO",
+    "name" => env("SITE_TITLE"),
     "entities" => [
         "projects" => [
             "list" => \App\Sharp\EntityLists\ProjectsList::class,

@@ -4,6 +4,7 @@ namespace App\Sharp\EntityForms;
 
 use App\ProfileAttribute;
 use Code16\Sharp\Form\Fields\SharpFormTextField;
+use Code16\Sharp\Form\Fields\SharpFormUploadField;
 use Code16\Sharp\Form\Fields\SharpFormWysiwygField;
 use Code16\Sharp\Form\Layout\FormLayoutColumn;
 use Code16\Sharp\Form\SharpForm;
@@ -14,7 +15,8 @@ class ProfileAttributesForm extends SharpForm {
     {
         $this->redirect = false;
         $this->deletable = false;
-        $this->addField(SharpFormTextField::make("name")->setLabel("Name"))
+        $this->addField(SharpFormUploadField::make("profile_image")->setLabel("Profile Image")->setStorageDisk('media')->setFileFilterImages())
+            ->addField(SharpFormTextField::make("name")->setLabel("Name"))
             ->addField(SharpFormTextField::make("job_title")->setLabel("Job Title"))
             ->addField(SharpFormTextField::make("email")->setLabel("Email"))
             ->addField(SharpFormWysiwygField::make("about_me")->setLabel("About Me"))
@@ -27,7 +29,7 @@ class ProfileAttributesForm extends SharpForm {
     function buildFormLayout()
     {
         $this->addColumn(12, function(FormLayoutColumn $column) {
-            $column->withFields("name", "job_title", "email", "about_me", "twitter", "linkedin", "stack_overflow", "github");
+            $column->withFields("profile_image", "name", "job_title", "email", "about_me", "twitter", "linkedin", "stack_overflow", "github");
         });
     }
 
@@ -39,7 +41,7 @@ class ProfileAttributesForm extends SharpForm {
             if ($profileAttribute->name == 'about_me') {
                 $attributes[$profileAttribute->name] = ['text' => $profileAttribute->value];
             } else {
-                $attributes[$profileAttribute->name] = $profileAttribute->value;
+                $attributes[$profileAttribute->name] = ($profileAttribute->name == 'profile_image') ? json_decode($profileAttribute->value) : $profileAttribute->value;
             }
         }
         if (!array_key_exists('about_me', $attributes)) {
@@ -51,11 +53,27 @@ class ProfileAttributesForm extends SharpForm {
     function update($id, array $data)
     {
         foreach ($data as $key => $value) {
-            $attribute = ProfileAttribute::where('name', $key)->firstOrNew([
-                'name' => $key
-            ]);
-            $attribute->value = $value;
-            $attribute->save();
+            if ($key == 'profile_image') {
+                if ($value) {
+                    $attribute = ProfileAttribute::firstOrNew([
+                        'name' => $key
+                    ]);
+                    $name = $value['file_name'];
+                    $thumbnail = env('MEDIA_URL') . '/' . $name;
+                    $attribute->value = json_encode(['name' => $name, 'thumbnail' => $thumbnail]);
+                    $attribute->save();
+                } else {
+                    $attribute = ProfileAttribute::where('name', $key)->first();
+                    if ($attribute)
+                        $attribute->delete();
+                }
+            } else {
+                $attribute = ProfileAttribute::firstOrNew([
+                    'name' => $key
+                ]);
+                $attribute->value = $value;
+                $attribute->save();
+            }
         }
         $this->notify('Success')->setDetail('Profile has been updated!')->setLevelSuccess()->setAutoHide(true);
     }

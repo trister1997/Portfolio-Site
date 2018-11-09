@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return redirect('/sharp');
-});
+Route::get('/', 'WebController@getHome');
+Route::get('/contact', 'WebController@getContact');
+Route::post('/contact', 'WebController@postContact');
