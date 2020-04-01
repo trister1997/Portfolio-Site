@@ -21,7 +21,8 @@ Setup Steps:
 * Setup .env file
 * Composer Install
 * php artisan migrate
-* php artisan user:create {username} {password} (So you can login)
+* php artisan user:create {username} {email} {password} (So you can 
+login)
 
 ### Env File Example
 ```
