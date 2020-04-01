@@ -116,7 +116,9 @@
 @section('extraJS')
     <script type="text/javascript">
         $(document).ready(function() {
-            GitHubActivity.feed({ username: "{{$profileAttributes['github_username']}}", selector: "#ghfeed" });
+            @if(isset($profileAttributes['github_username']))
+                GitHubActivity.feed({ username: "{{$profileAttributes['github_username']}}", selector: "#ghfeed" });
+            @endif
             $('.level-bar-inner').css('width', '0');
 
             $(window).on('load', function() {
