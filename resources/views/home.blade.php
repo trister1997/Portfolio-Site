@@ -18,18 +18,21 @@
                     <div class="content">
                         @foreach ($projects as $project)
                             <div class="item row">
-                                <a class="col-md-4 col-12" href="{{$project->link}}" target="_blank">
-                                    <img class="img-fluid project-image" src="{{$project->image}}" alt="{{$project->title}}">
-                                </a>
+                                @if (isset($project->image))
+                                    <a class="col-md-4 col-12" href="{{$project->link}}" target="_blank">
+                                        <img class="img-fluid project-image" src="{{$project->image}}" alt="{{$project->title}}">
+                                    </a>
+                                @endif
                                 <div class="desc col-md-8 col-12">
                                     <h3 class="title"><a href="{{$project->link}}" target="_blank">{{$project->title}}</a></h3>
                                     <p class="mb-2">{!! $project->description !!}</p>
                                     <p><a class="more-link" href="{{$project->link}}" target="_blank"><i class="fas fa-external-link-alt"></i>Find out more</a></p>
                                 </div>
                             </div>
+                            <hr>
                         @endforeach
                     </div><!--//content-->
-                </div><!--//section-inner-->                 s
+                </div><!--//section-inner-->
             </section><!--//section-->
         @endif
 

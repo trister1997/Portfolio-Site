@@ -68,11 +68,13 @@ class ProfileAttributesForm extends SharpForm {
                         $attribute->delete();
                 }
             } else {
-                $attribute = ProfileAttribute::firstOrNew([
-                    'name' => $key
-                ]);
-                $attribute->value = $value;
-                $attribute->save();
+                if ($value) {
+                    $attribute = ProfileAttribute::firstOrNew([
+                        'name' => $key
+                    ]);
+                    $attribute->value = $value;
+                    $attribute->save();
+                }
             }
         }
         $this->notify('Success')->setDetail('Profile has been updated!')->setLevelSuccess()->setAutoHide(true);

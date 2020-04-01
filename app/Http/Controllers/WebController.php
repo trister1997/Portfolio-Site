@@ -32,7 +32,9 @@ class WebController extends Controller
         $projects = Project::get();
         foreach ($projects as $project) {
             $image = $project->project_image()->first();
-            $project->image = env('MEDIA_URL') . '/' . $image->file_name;
+            if ($image) {
+                $project->image = env('MEDIA_URL') . '/' . $image->file_name;
+            }
         }
         $skills = Skill::get();
         $conferences = Conference::get();
